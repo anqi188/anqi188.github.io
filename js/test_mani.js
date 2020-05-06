@@ -63,6 +63,7 @@ function setWeb(){
             var img_full = new Image();
             img_full.onload = function(){
                 scale = device_width/img_full.width;
+                console.log("2222222222222");
             }
             img_full.src = fullimg;
 
