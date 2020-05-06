@@ -42,41 +42,23 @@ function setWeb(){
             console.log("11111111111111111");
 
             // to calculete the area coord according to the device size
-            // getImageInfo(fullimg, function (width, height) {
-            //     org_width = width;
-            //     console.log(org_width);
-            //     // device_width = parseFloat(window.screen.width);
-            //     scale = device_width/org_width;
-            //     console.log(scale);
-            //     console.log("2222222222222222");
-            // })
+            getImageInfo(fullimg, function (width, height) {
+                org_width = width;
+                console.log("org_width", org_width);
+                // device_width = parseFloat(window.screen.width);
+                scale = device_width/org_width;
+                console.log("scale", scale);
+                console.log("2222222222222222");
+            })
 
-            // getImageInfo(prescr, function (width, height) {
-            //     r_width = width * scale;
-            //     r_height = height * scale;
-            //     document.getElementById("img").style.width = r_width + "px";
-            //     document.getElementById("img").style.height = r_height + "px";
-            //     img.src = prescr
-            //     console.log("3333333333333");
-            // })
-
-            var img_full = new Image();
-            img_full.onload = function(){
-                scale = device_width/img_full.width;
-                console.log("2222222222222");
-            }
-            img_full.src = fullimg;
-
-            var img_pre = new Image();
-            img_pre.onload = function(){
-                r_width = img_pre.width * scale;
-                r_height = img_pre.height * scale;
+            getImageInfo(prescr, function (width, height) {
+                r_width = width * scale;
+                r_height = height * scale;
                 document.getElementById("img").style.width = r_width + "px";
                 document.getElementById("img").style.height = r_height + "px";
                 img.src = prescr
                 console.log("3333333333333");
-            }
-            img_pre.src = prescr;
+            })
 
 
 
