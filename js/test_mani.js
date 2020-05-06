@@ -88,7 +88,7 @@ function getImageInfo(url, callback) {
             console.log("66666666666666");
         }
     }
-    console.log("4444444444444");
+    // console.log("4444444444444");
 }
 
 
