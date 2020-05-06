@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+
+
+.box1 {
+	width: "100%";
+	height: 40px;
+	/* background: #ccc; */
+	border-radius: 10px;
+	margin: 10px;
+  text-align:justify;
+  padding: 10px 20px;
+}
+
+.shadow {
+	position: relative;
+	max-width: "90%";
+	box-shadow: 0px 1px 4px rgba(0,0,0,0.3),
+				0px 0px 20px rgba(0,0,0,0.1) inset;
+}
+
+.box2 {
+	width: "100%";
+	height: 300px;
+	/* background: #ccc; */
+	border-radius: 10px;
+	margin: 10px;
+  text-align:justify;
+  padding: 1px 20px;
+}
+</style>
+</head>
+<body>
+
+<h2 align="center">LaaS User Study</h2>
+
+<div class="box1 shadow">
+
+    The layout of webpages could be optimized/rearranged, so that users can derive better experience regarding certain objectives. This user study aims at testing user performance with original and optimized webpages.
+
+    Data is collected and used for scientific purposes only and strictly anonymized.
+</div>
+
+<form>
+  <div class="container">
+    <label for="uname"><b>Input your name</b></label>
+    <input id="name" type="text" placeholder="Enter your name" name="uname" required>
+    <br><label for="group"><b>Select your test group</b></label></br>
+    <input style="margin-top: 10px;" type="radio" name="Family" value="1" onclick="readradio();"/> Test 1
+    <input type="radio" name="Family" value="2" onclick="readradio();"/> Test 2
+    <!-- <input type="radio" name="Family" value="2" checked="checked" onclick="readradio();"/> Test 2 -->
+    <input type="radio" name="Family" value="3" onclick="readradio();"/> Test 3
+
+    </label>
+  </div>
+</form>
+
+<div class="box2 shadow">
+  <p style="font-size:24px; font-weight: bold; margin:8px 0">
+    Instruction:
+  </p>
+  <p style="font-size:20px; font-weight: bold; color: #f44336; margin:6px 0">
+    Please read carefully before continuing
+  </p>
+  <ol>
+    <li style="margin:8px 0">
+      This study will take about 10 minutes of your time. 
+      You will be presented with a series of webpages in the following trials. 
+      Getting yourself familiar with each objective item, 
+      then find and click it in the subsequent webpage <b>as fast and accurately as possible</b>.
+    </li>
+    <li style="margin:8px 0">
+      Before each trial, you will start with getting to know the objective item. 
+      Take your time to get familiar with them, 
+      click the <b>'Start the trial' button</b> to continue the trial when you are ready. 
+      <i>Noted that you are not supposed to check the objective item again once the trial is started.</i>
+    </li>
+    <li style="margin:8px 0">
+      For each trial, timing starts right after you see the webpage, 
+      and stops after you click on the webpage. 
+      If the correct objective item is clicked, you will move on to the <b>next trial</b>. 
+      If not, you will see the <b>red-cross</b> and <b>redo the trial</b>.
+    </li>
+    <li style="margin:8px 0">
+      After finishing all trial, 
+      click the <b>prompt button</b> to download the study data (.txt and .csv files). 
+      <b>Please send these 2 files to the contact person.</b>
+    </li>
+    <li style="margin:8px 0">
+      By clicking the <b>'Start the test!' button</b> you give 
+      your <a href="consent.html">informed consent</a> for the data collection (anonymized).
+    </li>   
+    <li style="margin:8px 0">
+      The following demo shows the basic process of conducting this test.
+    </li>
+  </ol>
+</div>
+
+<div style="text-align:center">
+<img src="img/gif.gif"
+style="
+width: 80%;
+text-align:center;
+margin: 0 auto;"></img>
+</div>
+
+
+<button onclick="userinfo();">Start the test!</button>
+
+</body>
+
+<script src="js/welcome_mani.js"></script>
+
+</html>

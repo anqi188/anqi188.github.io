@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<style>
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  height: 50px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size:16px;
+/*    
+  display: table-cell;
+  vertical-align: middle; */
+}
+button:hover {
+  opacity: 0.8;
+}
+
+#btnn {
+  grid-column: 1;
+  grid-row: 1;
+  float:left;
+}
+
+#progress {
+  grid-column: 5 / 7;
+  grid-row: 1;
+  margin-left: 20px;
+  margin-top: 8px;
+  float:left;
+  height: 50px;
+}
+
+#mylabel{
+  color: #4CAF50;
+  margin-top: 30px;
+  font-size:16px;
+  font-weight:bold
+}
+
+#myProgress {
+  width: 100%;
+  height: 20px;
+  background-color: #ddd;
+  margin-top: 9px;
+}
+
+#myBar {
+  width: 10%;
+  height: 20px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
+#imgg {
+  grid-column: 1 / 7;
+  grid-row: 2;
+  float:left;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#img {
+  /* width: initial;
+  height: initial; */
+  border-style:solid;
+  border-width:3px;
+  border-color: #4CAF50;
+  text-align:center;
+}
+
+.wrapper {
+  display: grid;
+  display: grid;
+  grid-template-columns: 16.7% 16.6% 16.6% 16.7% 16.6% 16.7%;
+  grid-template-rows: 60px 500px;
+}
+
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaaS User Study</title>
+    <div class="wrapper">
+      <div id="btnn">
+        <button id="btn1"></button>
+      </div>
+
+      <div id="progress">
+        <label id='mylabel'></label>
+        <div id="myProgress">
+          <div id="myBar"></div>
+        </div>
+      </div>
+
+      <div id="imgg" align="center">
+          <img id="img" src="">
+      </div>
+
+    </div>
+    <!-- <button id="btn3">clear</button> -->
+</head>
+
+<script src="js/data.js"></script>
+<!-- <script src="js/test_mani.js"></script> -->
+
+<body onload="setWeb()">
+</body>
+
+<script src="js/debugout.js"></script>
+<script src="js/test_mani.js"></script>
+</html>
