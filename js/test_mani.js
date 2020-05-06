@@ -31,7 +31,7 @@ function setWeb(){
             var num = testNum - arr.length + 1;
             var barpro = num/testNum * 100;
             // document.getElementById("mylabel").innerHTML="Trial:"+num+"/"+testNum;
-            document.getElementById("mylabel").innerHTML= barpro.toString() + "%";;
+            document.getElementById("mylabel").innerHTML= barpro.toString() + "%";
             document.getElementById("myBar").style.width = barpro.toString() + "%";
 
             prescr = "dataset_png/" + datajs[arr[0]].presrc;
