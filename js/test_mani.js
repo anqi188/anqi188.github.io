@@ -49,17 +49,17 @@ function setWeb(){
                 scale = device_width/org_width;
                 console.log("scale", scale);
                 console.log("2222222222222222");
-            })
 
-            getImageInfo(prescr, function (width, height) {
-                r_width = width * scale;
-                r_height = height * scale;
-                document.getElementById("img").style.width = r_width + "px";
-                document.getElementById("img").style.height = r_height + "px";
-                img.src = prescr
-                console.log("3333333333333");
-            })
 
+                getImageInfo(prescr, function (width, height) {
+                    r_width = width * scale;
+                    r_height = height * scale;
+                    document.getElementById("img").style.width = r_width + "px";
+                    document.getElementById("img").style.height = r_height + "px";
+                    img.src = prescr
+                    console.log("3333333333333");
+                })
+            })
 
 
         } else {
