@@ -3,6 +3,7 @@ var btn3 = document.getElementById("btn3");
 var img = document.getElementById('img');
 
 var testNum = datajs.length;
+var device_width = parseFloat(window.screen.width);
 
 /**
  * the first time of trial
@@ -42,7 +43,7 @@ function setWeb(){
             // to calculete the area coord according to the device size
             getImageInfo(fullimg, function (width, height) {
                 org_width = width;
-                device_width = parseFloat(window.screen.width);
+                // device_width = parseFloat(window.screen.width);
                 scale = device_width/org_width;
                 console.log("2222222222222222");
 
