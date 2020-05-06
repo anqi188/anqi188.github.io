@@ -76,9 +76,11 @@ function getImageInfo(url, callback) {
     if (img.complete) {
     // 如果图片被缓存，则直接返回缓存数据
         callback(img.width, img.height);
+        console.log("555555555555555");
     } else {
         img.onload = function () {
             callback(img.width, img.height);
+            console.log("66666666666666");
         }
     }
     console.log("4444444444444");
