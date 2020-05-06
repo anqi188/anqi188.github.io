@@ -12,7 +12,6 @@ if (localStorage.getItem("flag") === null){
     psdata = JSON.stringify(psdata);
     localStorage.setItem('psdata',psdata);
     localStorage.setItem('flag', 1);
-    console.log("11111111111111111");
 }
 
 /**
@@ -38,11 +37,14 @@ function setWeb(){
             var fullimg = "dataset_png/" + datajs[arr[0]].imgsrc;
             // var prescr = "dataset_png/rsz_1-yle.png";
 
+            console.log("11111111111111111");
+
             // to calculete the area coord according to the device size
             getImageInfo(fullimg, function (width, height) {
                 org_width = width;
                 device_width = parseFloat(window.screen.width);
                 scale = device_width/org_width;
+                console.log("2222222222222222");
 
                 getImageInfo(prescr, function (width, height) {
                     r_width = width * scale;
@@ -50,6 +52,7 @@ function setWeb(){
                     document.getElementById("img").style.width = r_width + "px";
                     document.getElementById("img").style.height = r_height + "px";
                     img.src = prescr
+                    console.log("3333333333333");
                 })
             })
 
@@ -77,6 +80,7 @@ function getImageInfo(url, callback) {
             callback(img.width, img.height);
         }
     }
+    console.log("4444444444444");
 }
 
 
