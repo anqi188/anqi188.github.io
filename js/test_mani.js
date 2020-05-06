@@ -34,8 +34,8 @@ function setWeb(){
             document.getElementById("mylabel").innerHTML= barpro.toString() + "%";;
             document.getElementById("myBar").style.width = barpro.toString() + "%";
 
-            prescr = "dataset-png/" + datajs[arr[0]].presrc;
-            var fullimg = "dataset-png/" + datajs[arr[0]].imgsrc;
+            prescr = "dataset_png/" + datajs[arr[0]].presrc;
+            var fullimg = "dataset_png/" + datajs[arr[0]].imgsrc;
             // var prescr = "dataset_png/rsz_1-yle.png";
 
             // to calculete the area coord according to the device size

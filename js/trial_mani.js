@@ -10,7 +10,7 @@ var scale;
 function setWeb(){
     var dtkey = parseInt(localStorage.getItem('dtkey'));
     // var dtkey = 0;
-    img.src = "dataset-png/" + datajs[dtkey].imgsrc;
+    img.src = "dataset_png/" + datajs[dtkey].imgsrc;
 
     localStorage.setItem('id', datajs[dtkey].name);
     localStorage.setItem('ioi_coords', datajs[dtkey].coords);
