@@ -25,9 +25,15 @@ function setWeb(){
     // to calculete the area coord according to the device size
     getImageInfo(img.src, function (width, height) {
             org_width = width;
-            device_width = parseFloat(window.screen.width);
+            // device_width = parseFloat(window.screen.width);
+            device_width = parseFloat(window.screen.availWidth);
             scale = device_width/org_width;
             console.log(width);
+            console.log(device_width);
+            console.log(scale);
+            console.log(window.screen.width);
+            console.log(window.screen.availWidth);
+            
             coords = coords.map(function(element) {
                 return element * scale;
             });
