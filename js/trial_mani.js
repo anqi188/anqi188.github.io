@@ -1,6 +1,25 @@
+// var img;
 var img = document.getElementById('img');
+
+// var img = document.querySelector('img')
+
+function loaded() {
+    var time_l = Math.round(new Date().getTime());
+    console.log("time_l", time_l);
+}
+
+if (img.complete) {
+  loaded()
+} else {
+  img.addEventListener('load', loaded)
+  img.addEventListener('error', function() {
+      alert('error')
+  })
+}
+
 var area = document.getElementById("area");
 var time1 = Math.round(new Date().getTime());
+console.log("time1", time1);
 console.log(datajs);
 var scale;
 
@@ -13,7 +32,7 @@ function setWeb(){
     img.src = "dataset_png/" + datajs[dtkey].imgsrc;
 
     localStorage.setItem('img_id', datajs[dtkey].img_id);
-    localStorage.setItem('img_coords', datajs[dtkey].coords);
+    // localStorage.setItem('img_coords', datajs[dtkey].coords);
     localStorage.setItem('ioi_id', datajs[dtkey].ioi_id);
     localStorage.setItem('ioi_coords', datajs[dtkey].coords);
 
@@ -27,21 +46,21 @@ function setWeb(){
     // to calculete the area coord according to the device size
     getImageInfo(img.src, function (width, height) {
             org_width = width;
-            // device_width = parseFloat(window.screen.width);
-            device_width = parseFloat(window.screen.availWidth);
+
+            // device_width = parseFloat(window.screen.availWidth);
+            // !!!!!!!!!!! the fixed max width - 1200px
+            device_width = 1200;
             scale = device_width/org_width;
-            console.log(width);
-            console.log(device_width);
-            console.log(scale);
-            console.log(window.screen.width);
-            console.log(window.screen.availWidth);
             
             coords = coords.map(function(element) {
-                return element * scale;
+                // return element * scale;
+                temp = element * scale
+                return parseInt(temp);
             });
+            localStorage.setItem('ioi_coords_s', coords);
             coords = coords.toString();
             area.coords = coords;
-            console.log(coords);
+            console.log("coords", coords);
         })
 }
 
@@ -60,6 +79,12 @@ function getImageInfo(url, callback) {
     }
 }
 
+// window.onload = (event) => {
+//     console.log('page is fully loaded');
+//     var time_l = Math.round(new Date().getTime());
+//     console.log("time_l", time_l);
+//   };
+
 
 /**
  * PSTime logging 
@@ -74,13 +99,15 @@ function areaclickHandler(event) {
     console.log("interval", leave1);
 
     //interval storing
+    localStorage.setItem('img_size',localStorage.getItem('img_size_f'));
+    var img_size_s = img.width + "," + img.height;
+    localStorage.setItem('img_size_s', img_size_s);
+
     localStorage.setItem('result',"correct");
     localStorage.setItem('time_loaded',time1);
     localStorage.setItem('pstime',leave1);
     localStorage.setItem('time_clicked',time2);
     localStorage.setItem('click_coords',event.offsetX+','+event.offsetY);
-    console.log(event.offsetX);
-    console.log(event.offsetY);
     // localStorage.setItem('r_coords',event.offsetX/scale+','+event.offsetY/scale);
 
     window.location.href='test.html';
@@ -97,6 +124,10 @@ function imgclickHandler(event){
     console.log("interval", leave1);
 
     //interval storing
+    localStorage.setItem('img_size',localStorage.getItem('img_size_f'));
+    var img_size_s = img.width + "," + img.height;
+    localStorage.setItem('img-size_s', img_size_s);
+
     localStorage.setItem('result',"incorrect");
     localStorage.setItem('time_loaded',time1);
     localStorage.setItem('pstime',leave1);

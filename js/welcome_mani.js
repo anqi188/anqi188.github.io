@@ -40,6 +40,11 @@ function userinfo() {
         console.log(name, fam);
 
         localStorage.removeItem('img_id');
+        localStorage.removeItem('img_size');
+        localStorage.removeItem('img_size_s');
+        localStorage.removeItem('ioi_id');
+        localStorage.removeItem('ioi_coords');
+        localStorage.removeItem('ioi_coords_s');
         localStorage.removeItem('pstime');
         localStorage.removeItem('psdata');
         localStorage.removeItem('flag');

@@ -44,12 +44,15 @@ function setWeb(){
 
             // to calculete the area coord according to the device size
             getImageInfo(fullimg, function (width, height) {
+                var img_size_f = width+","+height;
+                console.log("img_size_f", img_size_f);
+                localStorage.setItem("img_size_f", img_size_f);
+
                 org_width = width;
                 console.log("org_width", org_width);
                 // device_width = parseFloat(window.screen.width);
                 scale = device_width/org_width;
                 console.log("scale", scale);
-                console.log("2222222222222222");
 
 
                 getImageInfo(prescr, function (width, height) {
@@ -60,7 +63,6 @@ function setWeb(){
                     img.src = prescr;
                     document.getElementById("img").style.visibility = "visible";
                     document.getElementById("imgload").style.visibility = "hidden";
-                    console.log("3333333333333");
                 })
             })
 
@@ -118,41 +120,10 @@ function clickHandler1(event) {
         hiddenElement.target = '_blank';
         hiddenElement.download = localStorage.getItem('uname')+localStorage.getItem('ufam')+'.csv';
         hiddenElement.click();
-        getDeviceInfo()
     }
 }
 btn1.onclick = clickHandler1;
 
-function getDeviceInfo() {
-    var deviceWidth     = parseFloat(window.screen.width).toFixed(2);
-    var deviceHeight    = parseFloat(window.screen.height).toFixed(2);
-    var screenWidth     = parseFloat(window.screen.availWidth).toFixed(2);
-    var screenHeight    = parseFloat(window.screen.availHeight).toFixed(2);
-    var viewportWidth   = parseFloat($(window).width()).toFixed(2);
-    var viewportHeight  = parseFloat($(window).height()).toFixed(2);
-    var documentWidth   = parseFloat($(document).width()).toFixed(2);
-    var documentHeight   = parseFloat($(document).height()).toFixed(2);
-
-    // var bugout = new debugout();
-    // bugout.log('deviceWidth');
-    // bugout.log(deviceWidth);
-    // bugout.log('deviceHeight');
-    // bugout.log(deviceHeight);
-    // bugout.log('screenWidth');
-    // bugout.log(screenWidth);
-    // bugout.log('screenHeight');
-    // bugout.log(screenHeight);
-    // bugout.log('viewportWidth');
-    // bugout.log(viewportWidth);
-    // bugout.log('viewportHeight');
-    // bugout.log(viewportHeight);
-    // bugout.log('documentWidth');
-    // bugout.log(documentWidth);
-    // bugout.log('documentHeight');
-    // bugout.log(documentHeight);
-
-    // bugout.downloadLog();
-}
 
 /**
  * the psdata from the trial
@@ -177,9 +148,11 @@ if (localStorage.getItem("img_id") != null) {
     var json = {};
     json['img_id']      = localStorage.getItem('img_id');
     //!!!!!!!!!!! to be fixed-img size/coords
-    json['img_coords']  = localStorage.getItem('ioi_coords');
+    json['img_size']  = localStorage.getItem('img_size');
+    json['img_size_s']  = localStorage.getItem('img_size_s');
     json['ioi_id']      = localStorage.getItem('ioi_id');
     json['ioi_coords']  = localStorage.getItem('ioi_coords');
+    json['ioi_coords_s']  = localStorage.getItem('ioi_coords_s');
     json['click_coords']    = localStorage.getItem('click_coords');
     //!!!!!!!!!!
     json['result']    = localStorage.getItem('result'); 
@@ -205,12 +178,14 @@ if (localStorage.getItem("img_id") != null) {
 
     psdata = JSON.stringify(psdata);
     localStorage.setItem('psdata',psdata);
+    console.log('psdata',psdata);
 }
 
 function JsonToCSV(){
     // JsonFields = ["id", "ioi_coords", "start", "pstime", "end",
     //                 "s_coords",  "r_coords", "failure"];
-    JsonFields = ["img_id", "img_coords", "ioi_id", "ioi_coords",
+    JsonFields = ["img_id", "img_size", "img_size_s", 
+                    "ioi_id", "ioi_coords", "ioi_coords_s",
                     "click_coords",  "result", "time_loaded",
                     "time_clicked",  "pstime", "device",
                     "screen", "viewport", "documentt"
@@ -222,10 +197,12 @@ function JsonToCSV(){
 
     psdata.forEach(element => {
         img_id      = element.img_id;
+        img_size  = "\""+element.img_size+"\"";
+        img_size_s  = "\""+element.img_size_s+"\"";
+        ioi_id      = "\""+element.ioi_id+"\"";
         ioi_coords  = "\""+element.ioi_coords+"\"";
-        ioi_id   = "\""+element.ioi_id+"\"";
-        ioi_coords  = "\""+element.ioi_coords+"\"";
-        click_coords     = "\""+element.click_coords+"\"";
+        ioi_coords_s    = "\""+element.ioi_coords_s+"\"";
+        click_coords    = "\""+element.click_coords+"\"";
         result    = "\""+element.result+"\"";
         time_loaded    = "\""+element.time_loaded+"\"";
         time_clicked     = "\""+element.time_clicked+"\"";
@@ -237,26 +214,14 @@ function JsonToCSV(){
         console.log(element.documentt);
         console.log(document);
 
-        csvStr += img_id + ',' + ioi_coords + ',' + ioi_id + ',' + ioi_coords
+        csvStr += img_id + ',' + img_size + ',' + img_size_s + ',' 
+                    + ioi_id + ',' + ioi_coords + ',' + ioi_coords_s 
                     + ',' + click_coords + ',' + result
                     + ',' + time_loaded + ',' + time_clicked
                     + ',' + pstime 
                     + ',' + device + ',' + screen
                     + ',' + viewport + ',' + documentt + "\n";
-        
-        // id      = element.id;
-        // ioi_coords  = "\""+element.ioi_coords+"\"";
-        // start   = "\""+element.start+"\"";
-        // pstime  = "\""+element.pstime+"\"";
-        // end     = "\""+element.end+"\"";
-        // s_coords    = "\""+element.s_coords+"\"";
-        // r_coords    = "\""+element.r_coords+"\"";
-        // failure     = "\""+element.failure+"\"";
 
-        // csvStr += id + ',' + ioi_coords + ',' + start + ',' + pstime
-        //             + ',' + end + ',' + s_coords
-        //             + ',' + r_coords
-        //             + ',' + failure + "\n";
         })
         return csvStr;
 }
