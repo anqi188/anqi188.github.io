@@ -86,6 +86,20 @@
   text-align:center;
 }
 
+#imgload {
+  position:absolute;
+  text-align:center;
+  z-index: 2;
+  width: 100px;
+  height: 52px;
+  top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;
+
+}
+
 .wrapper {
   display: grid;
   display: grid;
@@ -124,7 +138,8 @@
       </div>
 
       <div id="imgg" align="center">
-          <img class="box1 shadow" id="img" src="img/loading.jpg">
+          <img id="imgload" src="img/loading.jpg">
+          <img class="box1 shadow" id="img" src="">
       </div>
 
     </div>

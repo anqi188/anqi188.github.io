@@ -24,6 +24,7 @@ function setWeb(){
     if(localStorage.getItem("failure_flag") == "0"){
         if(localStorage.getItem("uarr") != null){
             document.getElementById("btn1").innerHTML=">";
+            document.getElementById("img").style.visibility = "hidden";
 
             arr = localStorage.getItem('uarr').split(",").map(Number)
             console.log("setWeb",arr);
@@ -56,7 +57,9 @@ function setWeb(){
                     r_height = height * scale;
                     document.getElementById("img").style.width = r_width + "px";
                     document.getElementById("img").style.height = r_height + "px";
-                    img.src = prescr
+                    img.src = prescr;
+                    document.getElementById("img").style.visibility = "visible";
+                    document.getElementById("imgload").style.visibility = "hidden";
                     console.log("3333333333333");
                 })
             })
