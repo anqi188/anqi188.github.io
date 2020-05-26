@@ -23,7 +23,7 @@ var arr;
 function setWeb(){
     if(localStorage.getItem("failure_flag") == "0"){
         if(localStorage.getItem("uarr") != null){
-            document.getElementById("btn1").innerHTML="Start the trial";
+            document.getElementById("btn1").innerHTML=">";
 
             arr = localStorage.getItem('uarr').split(",").map(Number)
             console.log("setWeb",arr);
@@ -31,8 +31,8 @@ function setWeb(){
 
             var num = testNum - arr.length + 1;
             var barpro = num/testNum * 100;
-            // document.getElementById("mylabel").innerHTML="Trial:"+num+"/"+testNum;
-            document.getElementById("mylabel").innerHTML= barpro.toString() + "%";
+            document.getElementById("mylabel").innerHTML="Trial:"+num+"/"+testNum;
+            // document.getElementById("mylabel").innerHTML= barpro.toString() + "%";
             document.getElementById("myBar").style.width = barpro.toString() + "%";
 
             prescr = "dataset_png/" + datajs[arr[0]].presrc;
@@ -64,8 +64,14 @@ function setWeb(){
 
         } else {
             document.getElementById("progress").style.visibility = "hidden";
+            document.getElementById("btlab").style.visibility = "hidden";
+            document.getElementById("btn1").style.borderRadius = "0";
+            document.getElementById("btn1").style.width = "100%";
+            document.getElementById("btn1").style.height = "50px";
+            document.getElementById("btn1").style.fontWeight = "normal"
             document.getElementById("btn1").innerHTML="You're done! Export study data please";
             document.getElementById("btnn").style.gridColumn= "1 / 3";
+            document.getElementById("img").style.borderWidth="0px";
 
             img.src = "";
             console.log("csvvvvv");
@@ -123,46 +129,72 @@ function getDeviceInfo() {
     var documentWidth   = parseFloat($(document).width()).toFixed(2);
     var documentHeight   = parseFloat($(document).height()).toFixed(2);
 
-    var bugout = new debugout();
-    bugout.log('deviceWidth');
-    bugout.log(deviceWidth);
-    bugout.log('deviceHeight');
-    bugout.log(deviceHeight);
-    bugout.log('screenWidth');
-    bugout.log(screenWidth);
-    bugout.log('screenHeight');
-    bugout.log(screenHeight);
-    bugout.log('viewportWidth');
-    bugout.log(viewportWidth);
-    bugout.log('viewportHeight');
-    bugout.log(viewportHeight);
-    bugout.log('documentWidth');
-    bugout.log(documentWidth);
-    bugout.log('documentHeight');
-    bugout.log(documentHeight);
+    // var bugout = new debugout();
+    // bugout.log('deviceWidth');
+    // bugout.log(deviceWidth);
+    // bugout.log('deviceHeight');
+    // bugout.log(deviceHeight);
+    // bugout.log('screenWidth');
+    // bugout.log(screenWidth);
+    // bugout.log('screenHeight');
+    // bugout.log(screenHeight);
+    // bugout.log('viewportWidth');
+    // bugout.log(viewportWidth);
+    // bugout.log('viewportHeight');
+    // bugout.log(viewportHeight);
+    // bugout.log('documentWidth');
+    // bugout.log(documentWidth);
+    // bugout.log('documentHeight');
+    // bugout.log(documentHeight);
 
-    bugout.downloadLog();
+    // bugout.downloadLog();
 }
 
 /**
  * the psdata from the trial
  */
-if (localStorage.getItem("id") != null) {
-    console.log("22222222222222");
-    var id = localStorage.getItem('id');
+if (localStorage.getItem("img_id") != null) {
+
+    var deviceWidth     = parseFloat(window.screen.width).toFixed(2);
+    var deviceHeight    = parseFloat(window.screen.height).toFixed(2);
+    var screenWidth     = parseFloat(window.screen.availWidth).toFixed(2);
+    var screenHeight    = parseFloat(window.screen.availHeight).toFixed(2);
+    var viewportWidth   = parseFloat($(window).width()).toFixed(2);
+    var viewportHeight  = parseFloat($(window).height()).toFixed(2);
+    var documentWidth   = parseFloat($(document).width()).toFixed(2);
+    var documentHeight   = parseFloat($(document).height()).toFixed(2);
+    
+
+    console.log("++++++++@@@@@@@@@@@");
+    var img_id = localStorage.getItem('img_id');
     var pstime = localStorage.getItem('pstime');
-    console.log('id', id, 'pstime', pstime);
+    console.log('img_id', img_id, 'pstime', pstime);
 
     var json = {};
-    json['id']      = localStorage.getItem('id');
+    json['img_id']      = localStorage.getItem('img_id');
+    //!!!!!!!!!!! to be fixed-img size/coords
+    json['img_coords']  = localStorage.getItem('ioi_coords');
+    json['ioi_id']      = localStorage.getItem('ioi_id');
     json['ioi_coords']  = localStorage.getItem('ioi_coords');
-    json['start']   = localStorage.getItem('start');
+    json['click_coords']    = localStorage.getItem('click_coords');
+    //!!!!!!!!!!
+    json['result']    = localStorage.getItem('result'); 
+    //!!!!!!!!!!! loaded time
+    json['time_loaded']   = localStorage.getItem('start');
+    json['time_clicked']     = localStorage.getItem('end');
     json['pstime']  = localStorage.getItem('pstime');
-    json['end']     = localStorage.getItem('end');
-    json['s_coords']    = localStorage.getItem('s_coords');
-    json['r_coords']    = localStorage.getItem('r_coords');
-    json['failure']    = localStorage.getItem('failure');
 
+    json['device']  = deviceWidth +","+deviceHeight;
+    json['screen']  = screenWidth +","+screenHeight;
+    json['viewport']  = viewportWidth +","+viewportHeight;
+    json['documentt']  = documentWidth +","+documentHeight;
+    
+    // json['r_coords']    = localStorage.getItem('r_coords');
+    
+    console.log(json['device']);
+    console.log(json['screen']);
+    console.log(json['viewport']);
+    console.log(json['documentt']);
 
     psdata = JSON.parse(localStorage.getItem('psdata'))
     psdata.push(json);
@@ -172,27 +204,55 @@ if (localStorage.getItem("id") != null) {
 }
 
 function JsonToCSV(){
-    JsonFields = ["id", "ioi_coords", "start", "pstime", "end",
-                    "s_coords",  "r_coords", "failure"];
+    // JsonFields = ["id", "ioi_coords", "start", "pstime", "end",
+    //                 "s_coords",  "r_coords", "failure"];
+    JsonFields = ["img_id", "img_coords", "ioi_id", "ioi_coords",
+                    "click_coords",  "result", "time_loaded",
+                    "time_clicked",  "pstime", "device",
+                    "screen", "viewport", "documentt"
+                ];
 
     var csvStr = JsonFields.join(",") + "\n";
 
     psdata = JSON.parse(localStorage.getItem('psdata'))
 
     psdata.forEach(element => {
-        id      = element.id;
+        img_id      = element.img_id;
         ioi_coords  = "\""+element.ioi_coords+"\"";
-        start   = "\""+element.start+"\"";
-        pstime  = "\""+element.pstime+"\"";
-        end     = "\""+element.end+"\"";
-        s_coords    = "\""+element.s_coords+"\"";
-        r_coords    = "\""+element.r_coords+"\"";
-        failure     = "\""+element.failure+"\"";
+        ioi_id   = "\""+element.ioi_id+"\"";
+        ioi_coords  = "\""+element.ioi_coords+"\"";
+        click_coords     = "\""+element.click_coords+"\"";
+        result    = "\""+element.result+"\"";
+        time_loaded    = "\""+element.time_loaded+"\"";
+        time_clicked     = "\""+element.time_clicked+"\"";
+        pstime     = "\""+element.pstime+"\"";
+        device     = "\""+element.device+"\"";
+        screen     = "\""+element.screen+"\"";
+        viewport     = "\""+element.viewport+"\"";
+        documentt     = "\""+element.documentt+"\"";
+        console.log(element.documentt);
+        console.log(document);
 
-        csvStr += id + ',' + ioi_coords + ',' + start + ',' + pstime
-                    + ',' + end + ',' + s_coords
-                    + ',' + r_coords
-                    + ',' + failure + "\n";
+        csvStr += img_id + ',' + ioi_coords + ',' + ioi_id + ',' + ioi_coords
+                    + ',' + click_coords + ',' + result
+                    + ',' + time_loaded + ',' + time_clicked
+                    + ',' + pstime 
+                    + ',' + device + ',' + screen
+                    + ',' + viewport + ',' + documentt + "\n";
+        
+        // id      = element.id;
+        // ioi_coords  = "\""+element.ioi_coords+"\"";
+        // start   = "\""+element.start+"\"";
+        // pstime  = "\""+element.pstime+"\"";
+        // end     = "\""+element.end+"\"";
+        // s_coords    = "\""+element.s_coords+"\"";
+        // r_coords    = "\""+element.r_coords+"\"";
+        // failure     = "\""+element.failure+"\"";
+
+        // csvStr += id + ',' + ioi_coords + ',' + start + ',' + pstime
+        //             + ',' + end + ',' + s_coords
+        //             + ',' + r_coords
+        //             + ',' + failure + "\n";
         })
         return csvStr;
 }

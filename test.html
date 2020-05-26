@@ -3,21 +3,26 @@
 <head>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <style>
-button {
+  body {font-family: Arial, Helvetica, sans-serif;}
+
+#btn1 {
   background-color: #4CAF50;
   color: white;
-  padding: 14px 20px;
-  height: 50px;
-  margin: 8px 0;
+  /* padding: 14px 20px; */
+  height: 30px;
+  margin: 0px 0px;
   border: none;
   cursor: pointer;
-  width: 100%;
+  /* width: 100%; */
+  width: 30px;
   font-size:16px;
+  font-weight:bold;
+  border-radius:50%;
 /*    
   display: table-cell;
   vertical-align: middle; */
 }
-button:hover {
+#btn1:hover {
   opacity: 0.8;
 }
 
@@ -25,6 +30,13 @@ button:hover {
   grid-column: 1;
   grid-row: 1;
   float:left;
+}
+
+#btlab{
+  /* color: #4CAF50; */
+  margin-top: 30px;
+  font-size:16px;
+  font-weight:normal
 }
 
 #progress {
@@ -37,17 +49,17 @@ button:hover {
 }
 
 #mylabel{
-  color: #4CAF50;
+  /* color: #4CAF50; */
   margin-top: 30px;
   font-size:16px;
-  font-weight:bold
+  font-weight:normal
 }
 
 #myProgress {
   width: 100%;
   height: 20px;
   background-color: #ddd;
-  margin-top: 9px;
+  margin-top: 0px;
 }
 
 #myBar {
@@ -68,11 +80,9 @@ button:hover {
 }
 
 #img {
-  /* width: initial;
-  height: initial; */
-  border-style:solid;
-  border-width:3px;
-  border-color: #4CAF50;
+  /* border-style:inset;
+  border-width:1px;
+  border-color: rgb(225, 228, 225); */
   text-align:center;
 }
 
@@ -83,6 +93,17 @@ button:hover {
   grid-template-rows: 60px 500px;
 }
 
+.box1 {
+  text-align:justify;
+}
+
+.shadow {
+	position: relative;
+	max-width: "90%";
+	box-shadow: 0px 1px 4px rgba(0,0,0,0.3),
+				0px 0px 20px rgba(0,0,0,0.1) inset;
+}
+
 </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -90,17 +111,20 @@ button:hover {
     <div class="wrapper">
       <div id="btnn">
         <button id="btn1"></button>
-      </div>
-
-      <div id="progress">
-        <label id='mylabel'></label>
-        <div id="myProgress">
-          <div id="myBar"></div>
+        <div id="btlabdiv" style="margin-top: 5px;">
+          <label id="btlab">Press to start the trial</label>
         </div>
       </div>
 
+      <div id="progress">
+        <div id="myProgress" style="margin-bottom: 10px;">
+          <div id="myBar"></div>
+        </div>
+        <label id='mylabel'></label>
+      </div>
+
       <div id="imgg" align="center">
-          <img id="img" src="">
+          <img class="box1 shadow" id="img" src="img/loading.jpg">
       </div>
 
     </div>

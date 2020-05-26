@@ -1,7 +1,7 @@
 /**
  * IMPORTANT!!!
  */
-var arr = generateArray(0,7)
+var arr = generateArray(0,2)
 
 function generateArray (start, end) {
     return Array.from(new Array(end + 1).keys()).slice(start)
@@ -39,7 +39,7 @@ function userinfo() {
         var fam = readradio();
         console.log(name, fam);
 
-        localStorage.removeItem('id');
+        localStorage.removeItem('img_id');
         localStorage.removeItem('pstime');
         localStorage.removeItem('psdata');
         localStorage.removeItem('flag');

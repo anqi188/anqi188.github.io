@@ -12,10 +12,12 @@ function setWeb(){
     // var dtkey = 0;
     img.src = "dataset_png/" + datajs[dtkey].imgsrc;
 
-    localStorage.setItem('id', datajs[dtkey].name);
+    localStorage.setItem('img_id', datajs[dtkey].img_id);
+    localStorage.setItem('img_coords', datajs[dtkey].coords);
+    localStorage.setItem('ioi_id', datajs[dtkey].ioi_id);
     localStorage.setItem('ioi_coords', datajs[dtkey].coords);
 
-    localStorage.setItem('failure',0);
+    localStorage.setItem('result',0);
 
     var coords = datajs[dtkey].coords.split(",").map(Number);
     console.log(datajs[dtkey].coords);
@@ -72,12 +74,14 @@ function areaclickHandler(event) {
     console.log("interval", leave1);
 
     //interval storing
-    localStorage.setItem('failure',0);
-    localStorage.setItem('start',time1);
+    localStorage.setItem('result',"correct");
+    localStorage.setItem('time_loaded',time1);
     localStorage.setItem('pstime',leave1);
-    localStorage.setItem('end',time2);
-    localStorage.setItem('s_coords',event.offsetX+','+event.offsetY);
-    localStorage.setItem('r_coords',event.offsetX/scale+','+event.offsetY/scale);
+    localStorage.setItem('time_clicked',time2);
+    localStorage.setItem('click_coords',event.offsetX+','+event.offsetY);
+    console.log(event.offsetX);
+    console.log(event.offsetY);
+    // localStorage.setItem('r_coords',event.offsetX/scale+','+event.offsetY/scale);
 
     window.location.href='test.html';
 }
@@ -85,51 +89,98 @@ area.onclick = areaclickHandler;
 
 // For wrong click
 function imgclickHandler(event){
-    console.log(event);
     var time2 = Math.round(new Date().getTime())
+    console.log(time2);
 
     var usedTime = time2 - time1;
     var leave1 = usedTime % (24 * 3600 * 1000);      
+    console.log("interval", leave1);
 
-    localStorage.setItem('start',time1);
-    localStorage.setItem('end',time2);
+    //interval storing
+    localStorage.setItem('result',"incorrect");
+    localStorage.setItem('time_loaded',time1);
     localStorage.setItem('pstime',leave1);
-    localStorage.setItem('failure',1); //
-    localStorage.setItem('s_coords',event.offsetX+','+event.offsetY);
-    localStorage.setItem('r_coords',event.offsetX/scale+','+event.offsetY/scale);
+    localStorage.setItem('time_clicked',time2);
+    localStorage.setItem('click_coords',event.offsetX+','+event.offsetY);
+    // localStorage.setItem('r_coords',event.offsetX/scale+','+event.offsetY/scale);
 
-    failrecord();
-    var top = document.documentElement.scrollTop; //垂直方向滚动的值
-    var height = window.screen.availHeight; //屏幕可用工作区高度：
-
-    document.getElementById('fail').style.height = 500 * scale + "px";
-    document.getElementById('fail').style.visibility = "visible";
-    document.getElementById('fail').style.top = (top+height/2) +"px";
-
-
-    setTimeout(() => {
-        document.getElementById('fail').style.visibility = "hidden";
-        time1 = Math.round(new Date().getTime())
-      }, 200)
+    window.location.href='test.html';      
 }
 img.onclick = imgclickHandler;
 
-function failrecord(){
-    var json = {};
-    json['id']      = localStorage.getItem('id');
-    json['ioi_coords']  = localStorage.getItem('ioi_coords');
-    json['start']   = localStorage.getItem('start');
-    json['pstime']  = localStorage.getItem('pstime');
-    json['end']     = localStorage.getItem('end');
-    json['s_coords']    = localStorage.getItem('s_coords');
-    json['r_coords']    = localStorage.getItem('r_coords');
-    json['failure']    = localStorage.getItem('failure');
 
+function skipTrial(evt){
+    evt = (evt) ? evt : window.event
+    if (evt.keyCode) {
+        if(evt.keyCode == 78){
+            var time2 = Math.round(new Date().getTime())
+            console.log(time2);
 
-    psdata = JSON.parse(localStorage.getItem('psdata'))
-    psdata.push(json);
+            var usedTime = time2 - time1;
+            var leave1 = usedTime % (24 * 3600 * 1000);      
+            console.log("interval", leave1);
 
-    psdata = JSON.stringify(psdata);
-    localStorage.setItem('psdata',psdata);
-    console.log("!!!!!!!!!wrong!!!!!!!!!!!!");
+            //interval storing
+            localStorage.setItem('result',"skip");
+            localStorage.setItem('time_loaded',time1);
+            localStorage.setItem('pstime',leave1);
+            localStorage.setItem('time_clicked',time2);
+            localStorage.setItem('click_coords',"-");
+            // localStorage.setItem('r_coords',event.offsetX/scale+','+event.offsetY/scale);
+
+            window.location.href='test.html';   
+        }
+    }
 }
+window.document.onkeydown = skipTrial;
+
+
+// function imgclickHandler(event){
+//     console.log(event);
+//     var time2 = Math.round(new Date().getTime())
+
+//     var usedTime = time2 - time1;
+//     var leave1 = usedTime % (24 * 3600 * 1000);      
+
+//     localStorage.setItem('start',time1);
+//     localStorage.setItem('end',time2);
+//     localStorage.setItem('pstime',leave1);
+//     localStorage.setItem('failure',1); //
+//     localStorage.setItem('s_coords',event.offsetX+','+event.offsetY);
+//     localStorage.setItem('r_coords',event.offsetX/scale+','+event.offsetY/scale);
+
+//     failrecord();
+//     var top = document.documentElement.scrollTop; //垂直方向滚动的值
+//     var height = window.screen.availHeight; //屏幕可用工作区高度：
+
+//     document.getElementById('fail').style.height = 500 * scale + "px";
+//     document.getElementById('fail').style.visibility = "visible";
+//     document.getElementById('fail').style.top = (top+height/2) +"px";
+
+
+//     setTimeout(() => {
+//         document.getElementById('fail').style.visibility = "hidden";
+//         time1 = Math.round(new Date().getTime())
+//       }, 200)
+// }
+// img.onclick = imgclickHandler;
+
+// function failrecord(){
+//     var json = {};
+//     json['id']      = localStorage.getItem('id');
+//     json['ioi_coords']  = localStorage.getItem('ioi_coords');
+//     json['start']   = localStorage.getItem('start');
+//     json['pstime']  = localStorage.getItem('pstime');
+//     json['end']     = localStorage.getItem('end');
+//     json['s_coords']    = localStorage.getItem('s_coords');
+//     json['r_coords']    = localStorage.getItem('r_coords');
+//     json['failure']    = localStorage.getItem('failure');
+
+
+//     psdata = JSON.parse(localStorage.getItem('psdata'))
+//     psdata.push(json);
+
+//     psdata = JSON.stringify(psdata);
+//     localStorage.setItem('psdata',psdata);
+//     console.log("!!!!!!!!!wrong!!!!!!!!!!!!");
+// }
