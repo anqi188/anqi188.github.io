@@ -4,8 +4,8 @@
 // var img = document.querySelector('img')
 
 var area = document.getElementById("area");
-var time1 = Math.round(new Date().getTime());
-console.log("time1", time1);
+// var time1 = Math.round(new Date().getTime());
+// console.log("time1", time1);
 console.log(datajs);
 var scale;
 
@@ -15,12 +15,11 @@ function waitForImageToLoad(imageElement){
 }
   
 var img = document.getElementById('img');
-
 waitForImageToLoad(img).then(()=>{
     // Image have loaded.
     console.log('Loaded lol')
-    var time_l = Math.round(new Date().getTime());
-    console.log("time_l", time_l);
+    var time1 = Math.round(new Date().getTime());
+    console.log("time1", time1);
 });
 
 /**
