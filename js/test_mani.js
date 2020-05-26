@@ -66,6 +66,7 @@ function setWeb(){
 
 
         } else {
+            document.getElementById("imgload").style.visibility = "hidden";
             document.getElementById("progress").style.visibility = "hidden";
             document.getElementById("btlab").style.visibility = "hidden";
             document.getElementById("btn1").style.borderRadius = "0";
