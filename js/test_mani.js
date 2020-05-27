@@ -2,9 +2,10 @@ var btn1 = document.getElementById("btn1");
 var btn3 = document.getElementById("btn3");
 var img = document.getElementById('img');
 
-var testNum = datajs.length;
+var testNum = datajs.length*4;
 var device_width = parseFloat(window.screen.width);
 var scale;
+var arr;
 
 /**
  * the first time of trial
@@ -19,14 +20,14 @@ if (localStorage.getItem("flag") === null){
 /**
  * Web setting 
  */
-var arr;
 function setWeb(){
     if(localStorage.getItem("failure_flag") == "0"){
         if(localStorage.getItem("uarr") != null){
             document.getElementById("btn1").innerHTML=">";
             document.getElementById("img").style.visibility = "hidden";
 
-            arr = localStorage.getItem('uarr').split(",").map(Number)
+            // arr = localStorage.getItem('uarr').split(",").map(Number)
+            arr = JSON.parse(localStorage.getItem("uarr"));
             console.log("setWeb",arr);
             localStorage.setItem('dtkey', arr[0]);
 
@@ -36,11 +37,11 @@ function setWeb(){
             // document.getElementById("mylabel").innerHTML= barpro.toString() + "%";
             document.getElementById("myBar").style.width = barpro.toString() + "%";
 
-            prescr = "dataset_png/" + datajs[arr[0]].presrc;
-            var fullimg = "dataset_png/" + datajs[arr[0]].imgsrc;
-            // var prescr = "dataset_png/rsz_1-yle.png";
-
-            console.log("11111111111111111");
+            console.log(datajs);
+            var prescr = "dataset_png/" + datajs[arr[0][0]].id + "/" + datajs[arr[0][0]].variants[arr[0][1]].ioi_id + ".png";
+            var fullimg = "dataset_png/" + datajs[arr[0][0]].id + "/" + datajs[arr[0][0]].variants[arr[0][1]].img_id + ".png";
+            console.log(prescr);
+            console.log(fullimg);
 
             // to calculete the area coord according to the device size
             getImageInfo(fullimg, function (width, height) {
@@ -106,9 +107,11 @@ function getImageInfo(url, callback) {
 
 function clickHandler1(event) {
     if(localStorage.getItem("uarr") != null){
+        console.log("arr", arr);
         arr.shift();
         console.log("setUARR",arr);
-        localStorage.setItem('uarr', arr);
+        // localStorage.setItem('uarr', arr);
+        localStorage.setItem('uarr', JSON.stringify(arr));
         if(arr.length == 0){
             localStorage.removeItem('uarr');
         }
@@ -168,17 +171,12 @@ if (localStorage.getItem("img_id") != null) {
     
     // json['r_coords']    = localStorage.getItem('r_coords');
     
-    console.log(json['device']);
-    console.log(json['screen']);
-    console.log(json['viewport']);
-    console.log(json['documentt']);
 
     psdata = JSON.parse(localStorage.getItem('psdata'))
     psdata.push(json);
 
     psdata = JSON.stringify(psdata);
     localStorage.setItem('psdata',psdata);
-    console.log('psdata',psdata);
 }
 
 function JsonToCSV(){
@@ -211,8 +209,6 @@ function JsonToCSV(){
         screen     = "\""+element.screen+"\"";
         viewport     = "\""+element.viewport+"\"";
         documentt     = "\""+element.documentt+"\"";
-        console.log(element.documentt);
-        console.log(document);
 
         csvStr += img_id + ',' + img_size + ',' + img_size_s + ',' 
                     + ioi_id + ',' + ioi_coords + ',' + ioi_coords_s 

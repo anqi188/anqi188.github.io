@@ -1,21 +1,29 @@
 /**
  * IMPORTANT!!!
  */
-var arr = generateArray(0,2)
+var tmpArr = generateArray(0,2);
+var dataArr = Array.from(Array(3), () => new Array(2))
 
 function generateArray (start, end) {
     return Array.from(new Array(end + 1).keys()).slice(start)
 }
  
-var len = arr.length;
+var len = tmpArr.length;
 for(var i=0;i<len;i++) {
     var index = Math.floor(Math.random()*(len-i));
-    var tem = arr[index];
-    arr[index] = arr[len-i-1];
-    arr[len-i-1] = tem;
+    var tem = tmpArr[index];
+    tmpArr[index] = tmpArr[len-i-1];
+    tmpArr[len-i-1] = tem;
+
+    dataArr[len-i-1][0] = tem;
+    dataArr[len-i-1][1] = Math.floor(Math.random()*4); //randomize one condition
 }
- 
-console.log(arr);
+
+var arr = dataArr.slice();
+Array.prototype.push.apply(arr, dataArr);
+Array.prototype.push.apply(arr, dataArr);
+Array.prototype.push.apply(arr, dataArr);
+console.log("arr after", arr);
 
 
 function readradio() {       
@@ -53,7 +61,11 @@ function userinfo() {
         localStorage.setItem('uname', name);
         localStorage.setItem('ufam', fam);
 
-        localStorage.setItem('uarr', arr);
+        localStorage.setItem('uarr', JSON.stringify(arr));
+        // localStorage.setItem('uarr', arr);
+
+        // var arr1 = JSON.parse(localStorage.getItem("uarr"));
+        // console.log("arr1", arr1);
 
         localStorage.setItem('failure_flag',0);
 

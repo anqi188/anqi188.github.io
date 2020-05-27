@@ -4,8 +4,7 @@
 // var img = document.querySelector('img')
 
 var area = document.getElementById("area");
-var time1 = Math.round(new Date().getTime());
-console.log("time1", time1);
+var time1;
 console.log(datajs);
 var scale;
 
@@ -18,27 +17,29 @@ var img = document.getElementById('img');
 waitForImageToLoad(img).then(()=>{
     // Image have loaded.
     console.log('Loaded lol')
-    var time_l = Math.round(new Date().getTime());
-    console.log("time_l", time_l);
+    time1 = Math.round(new Date().getTime());
+    console.log("time1", time1);
 });
 
 /**
  * Web setting 
  */
 function setWeb(){
-    var dtkey = parseInt(localStorage.getItem('dtkey'));
+    var dtkey = localStorage.getItem('dtkey').split(",").map(Number)
+    console.log("dtkey", dtkey);
     // var dtkey = 0;
-    img.src = "dataset_png/" + datajs[dtkey].imgsrc;
+    // img.src = "dataset_png/" + datajs[dtkey].imgsrc;
+    img.src = "dataset_png/" + datajs[dtkey[0]].id + "/" + datajs[dtkey[0]].variants[dtkey[1]].img_id + ".png";
 
-    localStorage.setItem('img_id', datajs[dtkey].img_id);
+    localStorage.setItem('img_id', datajs[dtkey[0]].variants[dtkey[1]].img_id);
     // localStorage.setItem('img_coords', datajs[dtkey].coords);
-    localStorage.setItem('ioi_id', datajs[dtkey].ioi_id);
-    localStorage.setItem('ioi_coords', datajs[dtkey].coords);
+    localStorage.setItem('ioi_id', datajs[dtkey[0]].variants[dtkey[1]].ioi_id);
+    localStorage.setItem('ioi_coords', datajs[dtkey[0]].variants[dtkey[1]].coords);
 
     localStorage.setItem('result',0);
 
-    var coords = datajs[dtkey].coords.split(",").map(Number);
-    console.log(datajs[dtkey].coords);
+    var coords = datajs[dtkey[0]].variants[dtkey[1]].coords.split(",").map(Number);
+
     var org_width;
     var device_width;
 
@@ -78,16 +79,8 @@ function getImageInfo(url, callback) {
     }
 }
 
-// window.onload = (event) => {
-//     console.log('page is fully loaded');
-//     var time_l = Math.round(new Date().getTime());
-//     console.log("time_l", time_l);
-//   };
 
 
-/**
- * PSTime logging 
- */
 // For correct click
 function areaclickHandler(event) {
     var time2 = Math.round(new Date().getTime())
@@ -109,6 +102,7 @@ function areaclickHandler(event) {
     localStorage.setItem('click_coords',event.offsetX+','+event.offsetY);
     // localStorage.setItem('r_coords',event.offsetX/scale+','+event.offsetY/scale);
 
+    console.log(event);
     window.location.href='test.html';
 }
 area.onclick = areaclickHandler;
