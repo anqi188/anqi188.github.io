@@ -1,3 +1,38 @@
+time = Math.round(new Date().getTime());
+console.log("time", time);
+
+var img = document.querySelector('img')
+function loaded() {
+    time1 = Math.round(new Date().getTime());
+    console.log("time1", time1);
+}
+if (img.complete) {
+  loaded()
+} else {
+  img.addEventListener('load', loaded)
+  img.addEventListener('error', function() {
+      alert('error')
+  })
+}
+
+function waitForImageToLoad(imageElement){
+    return new Promise(resolve=>{imageElement.onload = resolve})
+}
+var img = document.getElementById('img');
+waitForImageToLoad(img).then(()=>{
+    // Image have loaded.
+    console.log('Loaded lol')
+    time2 = Math.round(new Date().getTime());
+    console.log("time2", time2);
+});
+
+window.addEventListener('load', (event) => {
+    console.log('page is fully loaded');
+    time3 = Math.round(new Date().getTime());
+    console.log("time3", time3);
+  });
+
+
 /**
  * IMPORTANT!!!
  */

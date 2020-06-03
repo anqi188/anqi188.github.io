@@ -1,10 +1,10 @@
-// var img;
-// var img = document.getElementById('img');
+time = Math.round(new Date().getTime());
+console.log("time", time);
 
-// var img = document.querySelector('img')
 
 var area = document.getElementById("area");
 var time1;
+
 console.log(datajs);
 var scale;
 
@@ -20,6 +20,31 @@ waitForImageToLoad(img).then(()=>{
     time1 = Math.round(new Date().getTime());
     console.log("time1", time1);
 });
+
+
+
+
+window.addEventListener('load', (event) => {
+    console.log('page is fully loaded');
+    time3 = Math.round(new Date().getTime());
+    console.log("time3", time3);
+});
+
+var imgg = document.querySelector("img")
+function loaded() {
+    time2 = Math.round(new Date().getTime());
+    console.log("time2", time2);
+}
+if (imgg.complete) {
+  loaded()
+} else {
+  imgg.addEventListener('load', loaded)
+  imgg.addEventListener('error', function() {
+      alert('error')
+  })
+}
+
+
 
 /**
  * Web setting 
