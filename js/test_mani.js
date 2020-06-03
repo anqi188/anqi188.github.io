@@ -2,7 +2,7 @@ var btn1 = document.getElementById("btn1");
 var btn3 = document.getElementById("btn3");
 var img = document.getElementById('img');
 
-var testNum = datajs.length*4;
+var testNum = datajs.length*3;
 var device_width = parseFloat(window.screen.width);
 var scale;
 var arr;
@@ -21,7 +21,9 @@ if (localStorage.getItem("flag") === null){
  * Web setting 
  */
 function setWeb(){
-    if(localStorage.getItem("failure_flag") == "0"){
+    console.log(localStorage.getItem("test"));
+    if(localStorage.getItem("test") == "null" ){
+        console.log(localStorage.getItem("test"))
         if(localStorage.getItem("uarr") != null){
             document.getElementById("btn1").innerHTML=">";
             document.getElementById("img").style.visibility = "hidden";
@@ -31,11 +33,45 @@ function setWeb(){
             console.log("setWeb",arr);
             localStorage.setItem('dtkey', arr[0]);
 
+            // var num = testNum - arr.length + 1;
+            // var barpro = num/testNum * 100;
+
+            // document.getElementById("mylabel").innerHTML="Trial:"+num+"/"+testNum;
+            // // document.getElementById("mylabel").innerHTML= barpro.toString() + "%";
+            // document.getElementById("myBar").style.width = barpro.toString() + "%";
+
+            var size = parseInt(localStorage.getItem("arrSize"));
+            console.log("size",size)
+
             var num = testNum - arr.length + 1;
-            var barpro = num/testNum * 100;
-            document.getElementById("mylabel").innerHTML="Trial:"+num+"/"+testNum;
-            // document.getElementById("mylabel").innerHTML= barpro.toString() + "%";
+            var numRound = num%size;
+            if(numRound == 0){
+                numRound = 4;
+            }
+            console.log("num", num);
+            console.log("numRound", numRound);
+            var barpro = (numRound)/size * 100;
+            document.getElementById("mylabel").innerHTML="Trial:"+numRound+"/"+size;
             document.getElementById("myBar").style.width = barpro.toString() + "%";
+
+            document.getElementById("test").style.backgroundColor = "#4CAF50";
+            switch (Math.floor((num-1)/size)) {
+                case 0:
+                    document.getElementById("roundlab").innerHTML= "Round " + 1;
+                    document.getElementById("r1").style.backgroundColor = "#4CAF50";
+                    break;
+                case 1:
+                    document.getElementById("roundlab").innerHTML= "Round " + 2;
+                    document.getElementById("r1").style.backgroundColor = "#4CAF50";
+                    document.getElementById("r2").style.backgroundColor = "#4CAF50";
+                    break;
+                case 2:
+                    document.getElementById("roundlab").innerHTML= "Round " + 3;
+                    document.getElementById("r1").style.backgroundColor = "#4CAF50";
+                    document.getElementById("r2").style.backgroundColor = "#4CAF50";
+                    document.getElementById("r3").style.backgroundColor = "#4CAF50";
+                    break;
+            } 
 
             console.log(datajs);
             var prescr = "dataset_png/" + datajs[arr[0][0]].id + "/" + datajs[arr[0][0]].variants[arr[0][1]].ioi_id + ".png";
@@ -46,7 +82,6 @@ function setWeb(){
             // to calculete the area coord according to the device size
             getImageInfo(fullimg, function (width, height) {
                 var img_size_f = width+","+height;
-                console.log("img_size_f", img_size_f);
                 localStorage.setItem("img_size_f", img_size_f);
 
                 org_width = width;
@@ -66,13 +101,13 @@ function setWeb(){
                     document.getElementById("imgload").style.visibility = "hidden";
                 })
             })
-
-
         } else {
             document.getElementById("imgload").style.visibility = "hidden";
             document.getElementById("progress").style.visibility = "hidden";
+            document.getElementById("round").style.visibility = "hidden";
+            document.getElementById("imgg").style.visibility = "hidden";
             document.getElementById("btlab").style.visibility = "hidden";
-            document.getElementById("btn1").style.borderRadius = "0";
+            document.getElementById("btn1").style.borderRadius = "20px";
             document.getElementById("btn1").style.width = "100%";
             document.getElementById("btn1").style.height = "50px";
             document.getElementById("btn1").style.fontWeight = "normal"
@@ -84,7 +119,48 @@ function setWeb(){
             console.log("csvvvvv");
         }
     } else{
-        window.location.href='trial.html';
+        document.getElementById("test").style.backgroundColor = "#4CAF50";
+        document.getElementById("progress").style.visibility = "hidden";
+
+        let prescr;
+        let fullimg;
+        
+        switch(parseInt(localStorage.getItem("test"))) {
+            case 0:
+                document.getElementById("roundlab").innerHTML= "Testing trial 1";
+                prescr = "dataset_test/" + testdatajs[0].presrc;
+                fullimg = "dataset_test/" + testdatajs[0].imgsrc;
+                break;
+            case 1:
+                document.getElementById("roundlab").innerHTML= "Testing trial 2";
+                prescr = "dataset_test/" + testdatajs[1].presrc;
+                fullimg = "dataset_test/" + testdatajs[1].imgsrc;
+                break;
+            case 2:
+                document.getElementById("roundlab").innerHTML= "Testing trial 3";
+                prescr = "dataset_test/" + testdatajs[2].presrc;
+                fullimg = "dataset_test/" + testdatajs[2].imgsrc;
+                break;
+        }
+
+        getImageInfo(fullimg, function (width, height) {
+            var img_size_f = width+","+height;
+            localStorage.setItem("img_size_f", img_size_f);
+
+            org_width = width;
+            scale = device_width/org_width;
+
+
+            getImageInfo(prescr, function (width, height) {
+                r_width = width * scale;
+                r_height = height * scale;
+                document.getElementById("img").style.width = r_width + "px";
+                document.getElementById("img").style.height = r_height + "px";
+                img.src = prescr;
+                document.getElementById("img").style.visibility = "visible";
+                document.getElementById("imgload").style.visibility = "hidden";
+            })
+        })      
     }
 }
 
@@ -94,11 +170,9 @@ function getImageInfo(url, callback) {
     if (img.complete) {
     // 如果图片被缓存，则直接返回缓存数据
         callback(img.width, img.height);
-        console.log("555555555555555");
     } else {
         img.onload = function () {
             callback(img.width, img.height);
-            console.log("66666666666666");
         }
     }
     // console.log("4444444444444");
@@ -107,13 +181,15 @@ function getImageInfo(url, callback) {
 
 function clickHandler1(event) {
     if(localStorage.getItem("uarr") != null){
-        console.log("arr", arr);
-        arr.shift();
-        console.log("setUARR",arr);
-        // localStorage.setItem('uarr', arr);
-        localStorage.setItem('uarr', JSON.stringify(arr));
-        if(arr.length == 0){
-            localStorage.removeItem('uarr');
+        if(localStorage.getItem("test") == "null" ){
+            console.log("arr", arr);
+            arr.shift();
+            console.log("setUARR",arr);
+            // localStorage.setItem('uarr', arr);
+            localStorage.setItem('uarr', JSON.stringify(arr));
+            if(arr.length == 0){
+                localStorage.removeItem('uarr');
+            }
         }
         window.location.href='trial.html';
     } else {
@@ -131,7 +207,7 @@ btn1.onclick = clickHandler1;
 /**
  * the psdata from the trial
  */
-if (localStorage.getItem("img_id") != null) {
+if (localStorage.getItem("img_id") != null && localStorage.getItem("test") == "null") {
 
     var deviceWidth     = parseFloat(window.screen.width).toFixed(2);
     var deviceHeight    = parseFloat(window.screen.height).toFixed(2);

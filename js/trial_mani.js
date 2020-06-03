@@ -25,26 +25,27 @@ waitForImageToLoad(img).then(()=>{
  * Web setting 
  */
 function setWeb(){
-    var dtkey = localStorage.getItem('dtkey').split(",").map(Number)
-    console.log("dtkey", dtkey);
-    // var dtkey = 0;
-    // img.src = "dataset_png/" + datajs[dtkey].imgsrc;
-    img.src = "dataset_png/" + datajs[dtkey[0]].id + "/" + datajs[dtkey[0]].variants[dtkey[1]].img_id + ".png";
+    if(localStorage.getItem("test") == "null" ){
+        var dtkey = localStorage.getItem('dtkey').split(",").map(Number)
+        console.log("dtkey", dtkey);
+        // var dtkey = 0;
+        // img.src = "dataset_png/" + datajs[dtkey].imgsrc;
+        img.src = "dataset_png/" + datajs[dtkey[0]].id + "/" + datajs[dtkey[0]].variants[dtkey[1]].img_id + ".png";
 
-    localStorage.setItem('img_id', datajs[dtkey[0]].variants[dtkey[1]].img_id);
-    // localStorage.setItem('img_coords', datajs[dtkey].coords);
-    localStorage.setItem('ioi_id', datajs[dtkey[0]].variants[dtkey[1]].ioi_id);
-    localStorage.setItem('ioi_coords', datajs[dtkey[0]].variants[dtkey[1]].coords);
+        localStorage.setItem('img_id', datajs[dtkey[0]].variants[dtkey[1]].img_id);
+        // localStorage.setItem('img_coords', datajs[dtkey].coords);
+        localStorage.setItem('ioi_id', datajs[dtkey[0]].variants[dtkey[1]].ioi_id);
+        localStorage.setItem('ioi_coords', datajs[dtkey[0]].variants[dtkey[1]].coords);
 
-    localStorage.setItem('result',0);
+        localStorage.setItem('result',0);
 
-    var coords = datajs[dtkey[0]].variants[dtkey[1]].coords.split(",").map(Number);
+        var coords = datajs[dtkey[0]].variants[dtkey[1]].coords.split(",").map(Number);
 
-    var org_width;
-    var device_width;
+        var org_width;
+        var device_width;
 
-    // to calculete the area coord according to the device size
-    getImageInfo(img.src, function (width, height) {
+        // to calculete the area coord according to the device size
+        getImageInfo(img.src, function (width, height) {
             org_width = width;
 
             // device_width = parseFloat(window.screen.availWidth);
@@ -62,6 +63,43 @@ function setWeb(){
             area.coords = coords;
             console.log("coords", coords);
         })
+    } else {
+        let coords;
+        let org_width;
+        let device_width;
+
+        switch(parseInt(localStorage.getItem("test"))) {
+            case 0:
+                img.src = "dataset_test/" + testdatajs[0].imgsrc;;
+                coords = testdatajs[0].coords.split(",").map(Number);
+                localStorage.setItem("test", 1);
+                break;
+            case 1:
+                img.src = "dataset_test/" + testdatajs[1].imgsrc;;
+                coords = testdatajs[0].coords.split(",").map(Number);
+                localStorage.setItem("test", 2);
+                break;
+            case 2:
+                img.src = "dataset_test/" + testdatajs[2].imgsrc;;
+                coords = testdatajs[0].coords.split(",").map(Number);
+                localStorage.setItem("test", null);
+                break;
+        }
+
+        getImageInfo(img.src, function (width, height) {
+            org_width = width;
+            device_width = 1200;
+            scale = device_width/org_width;
+            
+            coords = coords.map(function(element) {
+                temp = element * scale
+                return parseInt(temp);
+            });
+            coords = coords.toString();
+            area.coords = coords;
+            console.log("coords", coords);
+        })
+    }
 }
 
 

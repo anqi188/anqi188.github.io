@@ -86,35 +86,35 @@ var datajs = [
       }
     ]
   },
-  // {	
-  //   "id": "2-bbc2",
-  //   "variants":[
-  //     {
-  //     "condition": 0,
-  //     "img_id": "2-bbc2_0",
-  //     "ioi_id": "2-bbc2_0_i",
-  //     "coords": "6,1826,710,2549"
-  //     },
-  //     {
-  //     "condition": 1,
-  //     "img_id": "2-bbc2_1",
-  //     "ioi_id": "2-bbc2_1_i",
-  //     "coords": "6,1826,710,2549"
-  //     },
-  //     {
-  //     "condition": 2,
-  //     "img_id": "2-bbc2_2",
-  //     "ioi_id": "2-bbc2_2_i",
-  //     "coords": "6,1826,710,2549"
-  //     },
-  //     {
-  //     "condition": 3,
-  //     "img_id": "2-bbc2_3",
-  //     "ioi_id": "2-bbc2_3_i",
-  //     "coords": "6,1826,710,2549"
-  //     }
-  //   ]
-  // },
+  {	
+    "id": "2-bbc2",
+    "variants":[
+      {
+      "condition": 0,
+      "img_id": "2-bbc2_0",
+      "ioi_id": "2-bbc2_0_i",
+      "coords": "6,1826,710,2549"
+      },
+      {
+      "condition": 1,
+      "img_id": "2-bbc2_1",
+      "ioi_id": "2-bbc2_1_i",
+      "coords": "6,1826,710,2549"
+      },
+      {
+      "condition": 2,
+      "img_id": "2-bbc2_2",
+      "ioi_id": "2-bbc2_2_i",
+      "coords": "6,1826,710,2549"
+      },
+      {
+      "condition": 3,
+      "img_id": "2-bbc2_3",
+      "ioi_id": "2-bbc2_3_i",
+      "coords": "6,1826,710,2549"
+      }
+    ]
+  },
   // {	
   //   "id": "2-bbc3",
   //   "variants":[

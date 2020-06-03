@@ -43,32 +43,83 @@
   grid-column: 5 / 7;
   grid-row: 1;
   margin-left: 20px;
-  margin-top: 8px;
+  margin-top: 15px;
   float:left;
   height: 50px;
 }
 
 #mylabel{
   /* color: #4CAF50; */
-  margin-top: 30px;
+  margin-top: 40px;
   font-size:16px;
   font-weight:normal
 }
 
 #myProgress {
   width: 100%;
-  height: 20px;
+  height: 10px;
   background-color: #ddd;
   margin-top: 0px;
+  border-radius:10px;
 }
 
 #myBar {
   width: 10%;
-  height: 20px;
+  height: 10px;
   background-color: #4CAF50;
   text-align: center;
   line-height: 30px;
   color: white;
+  border-radius:10px;
+}
+
+#mylabeldiv{
+  /* text-align: center; */
+  margin-top: 12px;
+}
+
+.round {
+  grid-column: 3 / 5;
+  grid-row: 1;
+  float: left;
+  margin-left: 10%;
+  width: 80%;
+  margin-top: 2%;
+  height: 50px;
+
+}
+
+.test {
+    float: left;
+    background-color:#ddd;
+    margin-top: 2% ;
+    margin-left: 8%;
+    width: 2%;
+    height: 5px;  
+    border-radius:3px;
+}
+
+.r1,.r2,.r3 {
+    float: left;
+    background-color:#ddd;
+    margin-top: 2% ;
+    margin-left: 3%;
+    width: 24%;
+    height: 5px;  
+    border-radius:3px;
+}
+
+#rounddiv{
+  text-align: center;
+  margin-top: 30px;
+}
+
+#roundlab{
+  margin-top: 30px;
+  font-size:16px;
+  font-weight:normal;
+  /* text-align: center; */
+  margin: auto;
 }
 
 #imgg {
@@ -77,6 +128,7 @@
   float:left;
   width: 100%;
   margin-top: 20px;
+  text-align:left;
 }
 
 #img {
@@ -88,7 +140,7 @@
 
 #imgload {
   position:absolute;
-  text-align:center;
+  /* text-align:center; */
   z-index: 2;
   width: 100px;
   height: 52px;
@@ -108,7 +160,7 @@
 }
 
 .box1 {
-  text-align:justify;
+  text-align:center;
 }
 
 .shadow {
@@ -124,9 +176,19 @@
     <title>LaaS User Study</title>
     <div class="wrapper">
       <div id="btnn">
-        <button id="btn1"></button>
+        <button id="btn1">></button>
         <div id="btlabdiv" style="margin-top: 5px;">
           <label id="btlab">Press to start the trial</label>
+        </div>
+      </div>
+
+      <div class="round" id="round">
+        <div class="test" id="test"></div>
+        <div class="r1" id="r1"></div>
+        <div class="r2" id="r2"></div>
+        <div class="r3" id="r3"></div>
+        <div id="rounddiv">
+          <label id='roundlab'>Round</label>
         </div>
       </div>
 
@@ -134,12 +196,14 @@
         <div id="myProgress" style="margin-bottom: 10px;">
           <div id="myBar"></div>
         </div>
-        <label id='mylabel'></label>
+        <div id='mylabeldiv'>
+          <label id='mylabel'></label>
+        </div>
       </div>
 
-      <div id="imgg" align="center">
+      <div class="box1 shadow" id="imgg" align="center">
           <img id="imgload" src="img/loading.jpg">
-          <img class="box1 shadow" id="img" src="">
+          <img class="box1 shadow" id="img" src="" style="margin-top: 10px;">
       </div>
 
     </div>
@@ -147,11 +211,11 @@
 </head>
 
 <script src="js/data.js"></script>
+<script src="js/testdata.js"></script>
 <!-- <script src="js/test_mani.js"></script> -->
 
 <body onload="setWeb()">
 </body>
 
-<script src="js/debugout.js"></script>
 <script src="js/test_mani.js"></script>
 </html>

@@ -1,8 +1,11 @@
 /**
  * IMPORTANT!!!
  */
-var tmpArr = generateArray(0,2);
-var dataArr = Array.from(Array(3), () => new Array(2))
+var size = 4;
+var tmpArr = generateArray(0,size-1);
+var dataArr = Array.from(Array(size), () => new Array(2))
+
+localStorage.setItem("arrSize", size);
 
 function generateArray (start, end) {
     return Array.from(new Array(end + 1).keys()).slice(start)
@@ -20,7 +23,6 @@ for(var i=0;i<len;i++) {
 }
 
 var arr = dataArr.slice();
-Array.prototype.push.apply(arr, dataArr);
 Array.prototype.push.apply(arr, dataArr);
 Array.prototype.push.apply(arr, dataArr);
 console.log("arr after", arr);
@@ -62,12 +64,9 @@ function userinfo() {
         localStorage.setItem('ufam', fam);
 
         localStorage.setItem('uarr', JSON.stringify(arr));
-        // localStorage.setItem('uarr', arr);
+        
+        localStorage.setItem('test', 0);
 
-        // var arr1 = JSON.parse(localStorage.getItem("uarr"));
-        // console.log("arr1", arr1);
-
-        localStorage.setItem('failure_flag',0);
 
         window.location.href='test.html';
     }
