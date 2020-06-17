@@ -8,15 +8,11 @@ var time1;
 console.log(datajs);
 var scale;
 
-
+var img = document.getElementById('img');
 function waitForImageToLoad(imageElement){
     return new Promise(resolve=>{imageElement.onload = resolve})
 }
-  
-var img = document.getElementById('img');
 waitForImageToLoad(img).then(()=>{
-    // Image have loaded.
-    console.log('Loaded lol')
     time1 = Math.round(new Date().getTime());
     console.log("time1", time1);
 });

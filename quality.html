@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
+
+<style>
+  body {font-family: Arial, Helvetica, sans-serif;}
+
+#btn1 {
+  background-color: #4CAF50;
+  color: white;
+  /* padding: 14px 20px; */
+  height: 30px;
+  margin: 0px 0px;
+  border: none;
+  cursor: pointer;
+  /* width: 100%; */
+  width: 30px;
+  font-size:16px;
+  font-weight:bold;
+  border-radius:50%;
+/*    
+  display: table-cell;
+  vertical-align: middle; */
+}
+#btn1:hover {
+  opacity: 0.8;
+}
+
+#btnn {
+  grid-column: 6;
+  grid-row: 1;
+  position: absolute; 
+  top: 10px; 
+  right: 30px;
+}
+
+#btlab{
+  font-size:16px;
+  font-weight:normal
+}
+
+
+.round {
+  grid-column: 1 / 7;
+  grid-row: 2;
+  float: left;
+  /* margin-left: 10%;
+  width: 80%; */
+  margin-top: 2%;
+  height: 100%;
+
+}
+
+.r1,.r2,.r3,.r4 {
+    /* position:absolute; */
+    float: left;
+    margin-top: 2% ;
+    margin-left: 4%;
+    width: 20%; 
+    height: auto;
+    /* border-radius:3px; */
+    text-align:center;
+}
+
+#img1,#img2,#img3,#img4 {
+  /* position:absolute;
+  z-index: 0; */
+  width: 100%;
+  top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;
+}
+
+#onload1,#onload2,#onload3,#onload4 {
+  /* position:absolute;  */
+  /* text-align:center; */
+  z-index: 2;
+  width: 100%;
+  top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;
+}
+
+#popup {
+  position:absolute; 
+  text-align:center;
+  z-index: -1;
+  width: 1200px;
+}
+
+.wrapper {
+  display: grid;
+  display: grid;
+  grid-template-columns: 16.7% 16.6% 16.6% 16.7% 16.6% 16.7%;
+  grid-template-rows: 60px 1500px;
+}
+
+.box1 {
+  text-align:center;
+}
+
+.shadow {
+	position: relative;
+	max-width: "90%";
+	box-shadow: 0px 1px 4px rgba(0,0,0,0.3),
+				0px 0px 20px rgba(0,0,0,0.1) inset;
+}
+
+
+
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaaS User Study</title>
+    <div class="wrapper box1 shadow">
+
+      <div class="round" id="round">
+        <div class="r1" id="r1">
+          <div style="margin-bottom: 30px;">
+            <input>
+            <label>out of 7</label>
+          </div>
+          <img id="img1" class='min'>
+          <img id="onload1" src="img/loading.jpg">
+        </div>
+        <div class="r2" id="r2">
+          <div style="margin-bottom: 30px;">
+            <input>
+            <label>out of 7</label>
+          </div>
+          <img id="img2">
+          <img id="onload2" src="img/loading.jpg">
+        </div>
+        <div class="r3" id="r3">
+          <div style="margin-bottom: 30px;">
+            <input>
+            <label>out of 7</label>
+          </div>
+          <img id="img3">
+          <img id="onload3" src="img/loading.jpg">          
+        </div>
+        <div class="r4" id="r4">
+          <div style="margin-bottom: 30px;">
+            <input>
+            <label>out of 7</label>
+          </div>
+          <img id="img4">
+          <img id="onload4" src="img/loading.jpg">          
+        </div>
+      </div>
+
+
+      <div id="btnn">
+        <button id="btn1">></button>
+        <div id="btlabdiv" style="margin-top: 5px;">
+          <label id="btlab">Next</label>
+        </div>
+      </div>
+
+      <div id="popup">
+        <img id="popupimg" src="" alt="" style="width: 100%;"/>
+      </div>
+
+    </div>
+</head>
+
+<script src="js/data.js"></script>
+<!-- <script src="js/test_mani.js"></script> -->
+
+<body onload="setWeb()">
+</body>
+
+<script src="js/qulity_mani.js"></script>
+
+</html>
