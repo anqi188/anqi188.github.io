@@ -58,13 +58,12 @@ Study 1 and Study 2 utilize the same testing dataset, which is stored in [/datas
     |--image of design variant 3 (img_id_3.png)
     |--image of the IOI of design variant 3 (img_id_3_i.png)
   ...
-  |-- testing data
 ```
 
 *NB:* 
-- For each selected website, the images for 4 design variants and 4 cooresponding IOI are put under the same folder, which is named by the id of this website.
+- For each selected website, the images for 4 design variants and 4 cooresponding IOI, in total 8 .png files, are all put under the same folder, which is named by the id of this website.
 - For clearer demonstration, 4 design variants for one selected website are marked with C0/C1/C2/C3 on the top-left corner of each image.
-- The [/testing data](https://github.com/anqi188/anqi188.github.io/tree/master/dataset_png/testing%20data) folder and [testdata.js](https://github.com/anqi188/anqi188.github.io/blob/master/js/testdata.js) contain the data for the testing phase of Study 1. Please **Do Not REMOVE THEM**.
+- The [/dataset_test](https://github.com/anqi188/anqi188.github.io/tree/master/dataset_test) folder and [testdata.js](https://github.com/anqi188/anqi188.github.io/blob/master/js/testdata.js) contain the data for the testing phase of Study 1. Please **Do Not REMOVE THEM**.
 
 ## Process of the user study
 ### Study 1 
