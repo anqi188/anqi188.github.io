@@ -237,8 +237,8 @@ if (localStorage.getItem("img_id") != null && localStorage.getItem("test") == "n
     //!!!!!!!!!!
     json['result']    = localStorage.getItem('result'); 
     //!!!!!!!!!!! loaded time
-    json['time_loaded']   = localStorage.getItem('start');
-    json['time_clicked']     = localStorage.getItem('end');
+    json['time_loaded']   = localStorage.getItem('time_loaded');
+    json['time_clicked']     = localStorage.getItem('time_clicked');
     json['pstime']  = localStorage.getItem('pstime');
 
     json['device']  = deviceWidth +","+deviceHeight;
