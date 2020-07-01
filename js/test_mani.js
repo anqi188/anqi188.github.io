@@ -82,6 +82,7 @@ function setWeb(){
             // to calculete the area coord according to the device size
             getImageInfo(fullimg, function (width, height) {
                 var img_size_f = width+","+height;
+                console.log("img_size_f",img_size_f)
                 localStorage.setItem("img_size_f", img_size_f);
 
                 org_width = width;
@@ -197,7 +198,7 @@ function clickHandler1(event) {
         var hiddenElement = document.createElement('a');
         hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvStr);
         hiddenElement.target = '_blank';
-        hiddenElement.download = localStorage.getItem('uname')+localStorage.getItem('ufam')+'.csv';
+        hiddenElement.download = localStorage.getItem('uname')+"_"+localStorage.getItem('uage')+"_"+localStorage.getItem('ufam')+"_"+'S1'+'.csv';
         hiddenElement.click();
     }
 }
@@ -256,8 +257,6 @@ if (localStorage.getItem("img_id") != null && localStorage.getItem("test") == "n
 }
 
 function JsonToCSV(){
-    // JsonFields = ["id", "ioi_coords", "start", "pstime", "end",
-    //                 "s_coords",  "r_coords", "failure"];
     JsonFields = ["img_id", "img_size", "img_size_s", 
                     "ioi_id", "ioi_coords", "ioi_coords_s",
                     "click_coords",  "result", "time_loaded",

@@ -178,7 +178,7 @@ function imgclickHandler(event){
     //interval storing
     localStorage.setItem('img_size',localStorage.getItem('img_size_f'));
     var img_size_s = img.width + "," + img.height;
-    localStorage.setItem('img-size_s', img_size_s);
+    localStorage.setItem('img_size_s', img_size_s);
 
     localStorage.setItem('result',"incorrect");
     localStorage.setItem('time_loaded',time1);
@@ -202,6 +202,10 @@ function skipTrial(evt){
             var usedTime = time2 - time1;
             var leave1 = usedTime % (24 * 3600 * 1000);      
             console.log("interval", leave1);
+
+            localStorage.setItem('img_size',localStorage.getItem('img_size_f'));
+            var img_size_s = img.width + "," + img.height;
+            localStorage.setItem('img_size_s', img_size_s);
 
             //interval storing
             localStorage.setItem('result',"skip");

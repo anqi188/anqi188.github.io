@@ -68,7 +68,7 @@ function userinfo() {
         localStorage.setItem('webnum', 0);
 
 
-        window.location.href='test.html';
+        window.location.href='quality.html';
     }
 
 }
