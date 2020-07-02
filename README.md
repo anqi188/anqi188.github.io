@@ -112,7 +112,7 @@ In this demo, 4 trials in the first round are all correct. In second round they 
 
 [Result](https://github.com/anqi188/anqi188.github.io/blob/master/anqi_22_Female_S1%20.csv) for this demo video
 
-### Study 1
+### Study 2
 **Table 3.** Description of result .csv file for Study 2
 |Key  |Description            |Exemple  |
 |:-   |:-                     |:-
